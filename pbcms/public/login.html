@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PBCMS — Apex Industries</title>
+  <meta name="description" content="Product-Based Company Management System — Enterprise Dashboard">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-deep: #0A1628; --bg-card: rgba(15, 25, 50, 0.75);
+      --primary: #185FA5; --primary-light: #2178CC;
+      --gold: #C9A84C; --gold-light: #F0C96A;
+      --text: #E8ECF1; --text-muted: #6B7D95;
+      --danger: #E74C3C; --success: #2ECC71;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-deep); color: var(--text); min-height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    canvas#particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+    .login-wrapper { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 32px; }
+    .brand { text-align: center; animation: fadeDown 0.8s ease; }
+    .brand h1 { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, var(--gold), var(--gold-light), #fff, var(--gold)); background-size: 300% 300%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerText 4s ease infinite; }
+    .brand p { color: var(--text-muted); font-size: 0.95rem; margin-top: 6px; letter-spacing: 2px; text-transform: uppercase; }
+    @keyframes shimmerText { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-30px)} to{opacity:1;transform:translateY(0)} }
+
+    .login-card {
+      width: 420px; padding: 40px; border-radius: 20px;
+      background: var(--bg-card); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(201,168,76,0.15);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 40px rgba(201,168,76,0.05);
+      animation: fadeUp 0.8s ease 0.2s both;
+      position: relative; overflow: hidden;
+    }
+    .login-card::before {
+      content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+      border-radius: 21px; z-index: -1;
+      background: linear-gradient(135deg, transparent 30%, var(--gold) 50%, transparent 70%);
+      background-size: 400% 400%; animation: borderShimmer 6s ease infinite;
+    }
+    @keyframes borderShimmer { 0%{background-position:0% 0%} 50%{background-position:100% 100%} 100%{background-position:0% 0%} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+    .login-card h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+    .login-card p.subtitle { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 28px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+    .form-group input, .form-group select {
+      width: 100%; padding: 14px 16px; border-radius: 10px; font-size: 0.95rem;
+      background: rgba(10,22,40,0.8); border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text); font-family: 'Inter', sans-serif; transition: all 0.3s;
+    }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 20px rgba(201,168,76,0.15); }
+    .form-group input::placeholder { color: var(--text-muted); }
+    .form-group select option { background: var(--bg-deep); color: var(--text); }
+
+    .btn-login {
+      width: 100%; padding: 15px; border: none; border-radius: 12px; font-size: 1rem;
+      font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white; transition: all 0.3s; position: relative; overflow: hidden;
+      text-transform: uppercase; letter-spacing: 1.5px;
+    }
+    .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(24,95,165,0.4); }
+    .btn-login:active { transform: translateY(0); }
+    .btn-login.loading { pointer-events: none; opacity: 0.7; }
+
+    .error-msg { color: var(--danger); font-size: 0.85rem; margin-top: 12px; text-align: center; min-height: 20px; }
+    .demo-accounts { text-align: center; color: var(--text-muted); font-size: 0.75rem; margin-top: 16px; line-height: 1.8; }
+    .demo-accounts span { color: var(--gold); font-weight: 500; }
+
+    .floating-badge {
+      position: fixed; bottom: 20px; right: 20px; padding: 10px 18px; border-radius: 10px;
+      background: var(--bg-card); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05);
+      color: var(--text-muted); font-size: 0.7rem; z-index: 100; letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <div class="login-wrapper">
+    <div class="brand">
+      <h1>APEX INDUSTRIES</h1>
+      <p>Product-Based Company Management System</p>
+    </div>
+
+    <div class="login-card">
+      <h2>Welcome Back</h2>
+      <p class="subtitle">Sign in to your portal dashboard</p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="username" placeholder="Enter username" autocomplete="username" required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="password" placeholder="Enter password" autocomplete="current-password" required>
+        </div>
+        <div class="form-group">
+          <label>Portal</label>
+          <select id="roleHint">
+            <option value="">Auto-detect from account</option>
+            <option value="admin">Super Admin</option>
+            <option value="hr">HR Management</option>
+            <option value="production">Production</option>
+            <option value="inventory">Inventory</option>
+            <option value="finance">Finance</option>
+            <option value="legal">Legal</option>
+            <option value="logistics">Logistics</option>
+            <option value="buyer">B2B Buyer</option>
+            <option value="shareholder">Shareholder</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-login" id="loginBtn">Sign In</button>
+        <div class="error-msg" id="errorMsg"></div>
+      </form>
+
+      <div class="demo-accounts">
+        Password for all: <span>password123</span><br>
+        <span>admin</span> · <span>hr_manager</span> · <span>prod_head</span> · <span>inv_manager</span><br>
+        <span>fin_head</span> · <span>legal_head</span> · <span>log_manager</span> · <span>buyer_user</span> · <span>share_user</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="floating-badge">PBCMS v1.0 — SRM INSTITUTE OF SCIENCE AND TECHNOLOGY</div>
+
+  <script>
+    // === Particle Canvas ===
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const PARTICLE_COUNT = 80;
+
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.4;
+        this.speedY = (Math.random() - 0.5) * 0.4;
+        this.opacity = Math.random() * 0.5 + 0.1;
+        this.color = Math.random() > 0.7 ? '201,168,76' : '24,95,165';
+      }
+      update() {
+        this.x += this.speedX; this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+      }
+      draw() {
+        ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color},${this.opacity})`; ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+    function connectParticles() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(24,95,165,${0.08 * (1 - dist / 150)})`;
+            ctx.lineWidth = 0.5; ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // === Login Logic ===
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('loginBtn');
+      const errEl = document.getElementById('errorMsg');
+      btn.classList.add('loading'); btn.textContent = 'Authenticating...'; errEl.textContent = '';
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            username: document.getElementById('username').value,
+            password: document.getElementById('password').value
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          btn.textContent = '✓ Success'; btn.style.background = 'linear-gradient(135deg, #2ECC71, #27AE60)';
+          setTimeout(() => window.location.href = '/dashboard', 600);
+        } else {
+          errEl.textContent = data.error || 'Login failed';
+          btn.classList.remove('loading'); btn.textContent = 'Sign In';
+        }
+      } catch (err) {
+        errEl.textContent = 'Connection error — is the server running?';
+        btn.classList.remove('loading'); btn.textContent = 'Sign In';
+      }
+    });
+  </script>
+</body>
+</html>

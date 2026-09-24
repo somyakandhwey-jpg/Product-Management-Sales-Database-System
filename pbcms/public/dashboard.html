@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PBCMS Dashboard — Apex Industries</title>
+  <meta name="description" content="Product-Based Company Management System Dashboard">
+  <link rel="stylesheet" href="/css/style.css?v=2">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <h1>APEX INDUSTRIES</h1>
+        <div class="role-badge" id="roleBadge">Loading...</div>
+      </div>
+      <nav class="sidebar-nav" id="sidebarNav"></nav>
+      <div class="sidebar-footer">
+        <button class="logout-btn" onclick="logout()">🚪 Sign Out</button>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div class="topbar-title" id="pageTitle">Dashboard</div>
+        <div class="topbar-user">
+          <div class="user-info">
+            <div class="user-name" id="userName">—</div>
+            <div class="user-role" id="userRole">—</div>
+          </div>
+          <div class="avatar" id="userAvatar">?</div>
+        </div>
+      </header>
+      <div class="page-content" id="pageContent">
+        <div class="empty-state"><div class="icon">⏳</div><p>Loading...</p></div>
+      </div>
+    </main>
+  </div>
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="/js/app.js?v=4"></script>
+</body>
+</html>
