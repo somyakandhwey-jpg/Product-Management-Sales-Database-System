@@ -1,434 +1,491 @@
-<![CDATA[<div align="center">
-
 # 🏭 PBCMS — Product-Based Company Management System
 
-**A full-stack enterprise management dashboard for Apex Industries**
+> **A full-stack enterprise management dashboard for Apex Industries Pvt. Ltd.**
 
-![Node.js](https://img.shields.io/badge/Node.js-v18+-339933?logo=node.js&logoColor=white)
-![Express](https://img.shields.io/badge/Express-4.18-000000?logo=express&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js\&logoColor=white)
+![Express](https://img.shields.io/badge/Express-4.18-000000?logo=express\&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql\&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript\&logoColor=black)
 ![License](https://img.shields.io/badge/License-Academic-blue)
 
-*Built as a DBMS course project — SRM Institute of Science and Technology*
+---
+
+## 📌 Overview
+
+**PBCMS (Product-Based Company Management System)** is a full-stack enterprise management application designed to simulate the operations of a product-based manufacturing company.
+
+The system provides **role-based dashboards** for managing:
+
+* 👥 Employees and departments
+* 🏭 Production and manufacturing
+* 📦 Inventory and stock
+* 💰 Finance and orders
+* ⚖️ Legal cases and compliance
+* 🚚 Logistics and fleet
+* 🛒 B2B buyers
+* 📈 Shareholders and ownership
+
+The project demonstrates practical **Database Management System concepts** through a normalized relational database, multiple entity relationships, CRUD operations, analytics queries, authentication, and role-based access control.
 
 ---
 
-</div>
+## ✨ Key Features
 
-## 📋 Table of Contents
+### 🔐 Authentication & Access Control
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Architecture](#-architecture)
-- [Database Schema](#-database-schema)
-- [Getting Started](#-getting-started)
-- [Role-Based Portals](#-role-based-portals)
-- [API Reference](#-api-reference)
-- [Project Structure](#-project-structure)
-- [Demo Accounts](#-demo-accounts)
-- [Screenshots](#-screenshots)
-- [License](#-license)
+* Session-based authentication
+* Password hashing with `bcryptjs`
+* Role-based access control
+* Protected API routes
+* Login and logout functionality
 
----
+### 👥 Role-Based Dashboards
 
-## 🔍 Overview
+The system supports **9 different user roles**, with each role receiving a customized dashboard and relevant functionality.
 
-PBCMS (Product-Based Company Management System) is a **role-based enterprise dashboard** that models the complete operations of a product-based manufacturing company — **Apex Industries Pvt. Ltd.**
+### 📊 Analytics
 
-The system covers 9 distinct organizational roles across 31+ relational database tables, managing everything from HR and production to legal compliance and shareholder relations. It demonstrates core DBMS concepts including **normalization, referential integrity, complex joins, aggregation queries, and role-based access control**.
+* KPI cards
+* Revenue statistics
+* Production analytics
+* Employee statistics
+* Inventory insights
+* Order summaries
+* Fleet analytics
+* Legal case statistics
 
----
+### 🗃️ Database Operations
 
-## ✨ Features
+* Full CRUD functionality
+* Relational database design
+* Primary and foreign keys
+* Many-to-many relationships
+* Referential integrity
+* Seed/demo data
+* SQL joins and aggregate queries
 
-### Core Capabilities
-- 🔐 **Session-based Authentication** with bcrypt password hashing
-- 👥 **9 Role-Based Portals** — each with a tailored dashboard and navigation
-- 📊 **Real-time Analytics** — KPI cards, bar charts, and data visualizations
-- 📋 **Full CRUD Operations** — Add, view, and delete records across all entities
-- 🎨 **Premium UI** — Glassmorphism design with particle animations and micro-interactions
-- 🔄 **Single-Page Application (SPA)** — Seamless client-side routing without page reloads
+### 🎨 Modern Interface
 
-### Business Modules
-| Module | Description |
-|--------|-------------|
-| **Company** | Organization profile, shareholder management, ownership tracking |
-| **HR** | Employee directory, department management, role specialization tracking |
-| **Production** | Production units, parts catalog, production logs, work assignments |
-| **Inventory** | Shop/warehouse management, stock levels, low-stock alerts |
-| **Finance** | Revenue tracking, purchase orders, customs duties, consultation fees |
-| **Legal** | Legal case management, lawyer assignments, customs compliance |
-| **Logistics** | Fleet management, driver assignments, vehicle maintenance logs |
-| **B2B Buyer** | Product browsing, order placement, order history |
-| **Shareholder** | Company information, ownership distribution |
+* Dark-mode UI
+* Glassmorphism design
+* Responsive sidebar
+* Animated KPI counters
+* Particle animation
+* Toast notifications
+* Dynamic modal forms
+* Status indicators
 
 ---
 
-## 🛠️ Tech Stack
+## 🏢 Business Modules
 
-| Layer | Technology |
-|-------|-----------|
-| **Runtime** | Node.js (v18+) |
-| **Backend** | Express.js 4.18 |
-| **Database** | MySQL 8.0 (via `mysql2/promise`) |
-| **Auth** | `express-session` + `bcryptjs` |
-| **Frontend** | Vanilla HTML5, CSS3, JavaScript (ES6+) |
-| **Typography** | Google Fonts — Inter |
-| **Design** | Glassmorphism, CSS custom properties, particle canvas |
-
-> **Zero build tools required** — No webpack, no bundler, no transpiler. Just `node server.js`.
+| Module             | Description                                            |
+| ------------------ | ------------------------------------------------------ |
+| 🏢 **Company**     | Company information, shareholders and ownership        |
+| 👥 **HR**          | Employee and department management                     |
+| 🏭 **Production**  | Products, parts, production units and work assignments |
+| 📦 **Inventory**   | Shops, stock levels and inventory management           |
+| 💰 **Finance**     | Orders, revenue, customs duties and consultations      |
+| ⚖️ **Legal**       | Legal cases, lawyers and customs records               |
+| 🚚 **Logistics**   | Vehicles, drivers and maintenance                      |
+| 🛒 **B2B Buyer**   | Product browsing and order management                  |
+| 📈 **Shareholder** | Company information and ownership distribution         |
 
 ---
 
-## 🏗️ Architecture
+# 🛠️ Tech Stack
 
-```
+| Layer               | Technology                    |
+| ------------------- | ----------------------------- |
+| **Runtime**         | Node.js 18+                   |
+| **Backend**         | Express.js 4.18               |
+| **Database**        | MySQL 8.0                     |
+| **Database Driver** | mysql2/promise                |
+| **Authentication**  | express-session + bcryptjs    |
+| **Frontend**        | HTML5, CSS3, JavaScript ES6+  |
+| **Typography**      | Google Fonts — Inter          |
+| **UI**              | CSS Glassmorphism             |
+| **Architecture**    | REST API + SPA-style frontend |
+
+> **No build tools required.** Run the application directly with `npm start`.
+
+---
+
+# 🏗️ System Architecture
+
+```text
 ┌─────────────────────────────────────────────────────┐
-│                    Client (Browser)                  │
-│  ┌─────────────┐  ┌──────────────┐  ┌────────────┐ │
-│  │  login.html  │  │ dashboard.html│  │  app.js    │ │
-│  │  (Auth Page) │  │  (SPA Shell)  │  │ (Router +  │ │
-│  └──────┬───────┘  └──────┬───────┘  │  Renderer) │ │
-│         │                 │          └─────┬──────┘ │
-└─────────┼─────────────────┼────────────────┼────────┘
-          │  HTTP / JSON    │                │
-┌─────────▼─────────────────▼────────────────▼────────┐
-│                  Express.js Server                   │
-│  ┌──────────┐  ┌────────────┐  ┌─────────────────┐ │
-│  │ Auth MW   │  │ Static MW   │  │ Session MW      │ │
-│  └────┬─────┘  └─────┬──────┘  └────────┬────────┘ │
-│       │              │                   │          │
-│  ┌────▼──────────────▼───────────────────▼────────┐ │
-│  │              API Route Handlers                 │ │
-│  │  auth · dashboard · company · departments       │ │
-│  │  employees · products · inventory · orders      │ │
-│  │  buyers · vehicles · legal                      │ │
-│  └──────────────────────┬─────────────────────────┘ │
-└─────────────────────────┼───────────────────────────┘
-                          │  mysql2/promise
-┌─────────────────────────▼───────────────────────────┐
-│               MySQL Database (pbcompany)             │
-│         31 tables · FK constraints · seed data       │
+│                     BROWSER                         │
+│                                                     │
+│  login.html     dashboard.html       app.js        │
+│  Authentication     SPA Shell       Router/UI      │
+└───────────────────────┬─────────────────────────────┘
+                        │
+                    HTTP / JSON
+                        │
+┌───────────────────────▼─────────────────────────────┐
+│                  EXPRESS.JS SERVER                  │
+│                                                     │
+│  Authentication     Sessions     Static Files      │
+│                                                     │
+│  ┌───────────────────────────────────────────────┐  │
+│  │                 API ROUTES                    │  │
+│  │                                               │  │
+│  │ Auth · Dashboard · Company · HR · Production  │  │
+│  │ Inventory · Orders · Buyers · Vehicles · Legal│  │
+│  └───────────────────────┬───────────────────────┘  │
+└──────────────────────────┼──────────────────────────┘
+                           │
+                       mysql2
+                           │
+┌──────────────────────────▼──────────────────────────┐
+│                    MYSQL DATABASE                   │
+│                                                     │
+│       pbcompany · Tables · Relationships            │
+│       Foreign Keys · Constraints · Seed Data       │
 └─────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🗄️ Database Schema
+# 🗄️ Database Design
 
-The database `pbcompany` contains **31 relational tables + 1 users table**, organized into the following domains:
+The `pbcompany` database contains the relational data model used to represent the company's operations.
 
-### Entity Tables
-| Table | Primary Key | Description |
-|-------|-------------|-------------|
-| `users` | `id` | Application login accounts |
-| `company` | `company_id` | Organization master record |
-| `shareholder` | `shareholder_id` | Individual/institutional shareholders |
-| `department` | `dept_id` | Company departments |
-| `employee` | `emp_id` | All employee records |
-| `product` | `product_id` | Product catalog |
-| `part` | `part_id` | Manufacturing parts |
-| `production_unit` | `unit_id` | Factory production units |
-| `shop` | `shop_id` | Warehouse/retail locations |
-| `buyer` | `buyer_id` | B2B buyer companies |
-| `purchase_order` | `order_id` | Customer orders |
-| `vehicle` | `vehicle_id` | Company fleet |
-| `legal_case` | `case_id` | Legal proceedings |
-| `customs_record` | `record_id` | Import/export records |
-| `consultation` | `consult_id` | External consultancy records |
+## Core Entities
 
-### Specialization Tables (ISA Hierarchy — Employee)
-| Table | Inherits From | Specialization Field |
-|-------|--------------|---------------------|
-| `manager` | `employee` | `grade` |
-| `engineer` | `employee` | `role_type` |
-| `truck_driver` | `employee` | `license_type` |
-| `labour` | `employee` | `role_type` |
-| `supervisor` | `employee` | `license_type` |
-| `accountant` | `employee` | `license_type` |
-| `lawyer` | `employee` | `lawyer_spec` |
+| Table             | Primary Key      | Purpose                    |
+| ----------------- | ---------------- | -------------------------- |
+| `users`           | `id`             | Application login accounts |
+| `company`         | `company_id`     | Company information        |
+| `shareholder`     | `shareholder_id` | Shareholder records        |
+| `department`      | `dept_id`        | Departments                |
+| `employee`        | `emp_id`         | Employee records           |
+| `product`         | `product_id`     | Product catalog            |
+| `part`            | `part_id`        | Manufacturing parts        |
+| `production_unit` | `unit_id`        | Production units           |
+| `shop`            | `shop_id`        | Shops and warehouses       |
+| `buyer`           | `buyer_id`       | B2B buyers                 |
+| `purchase_order`  | `order_id`       | Customer orders            |
+| `vehicle`         | `vehicle_id`     | Company vehicles           |
+| `legal_case`      | `case_id`        | Legal proceedings          |
+| `customs_record`  | `record_id`      | Import/export records      |
+| `consultation`    | `consult_id`     | Consultation records       |
 
-### Relationship Tables
-| Table | Connects | Cardinality |
-|-------|----------|-------------|
-| `owns` | company ↔ shareholder | M:N |
-| `produces_rel` | production_unit ↔ product | M:N (with date, qty) |
-| `inventory` | shop ↔ product | M:N (stock tracking) |
-| `order_line_items` | purchase_order ↔ product | M:N (with price, qty) |
-| `performs_rel` | employee ↔ part | M:N (work assignment) |
-| `vehicle_assignment` | vehicle ↔ truck_driver | M:N |
-| `maintenance_log` | employee ↔ vehicle | M:N (with service date) |
-| `case_handling` | legal_case ↔ lawyer | M:N |
-| `department_has_employees` | department ↔ employee | M:N |
-| `contains_order_line_items` | order ↔ product | M:N |
-| `legal_case_associated_with_record` | legal_case ↔ customs_record | M:N |
-| `case_handling_involves_consultation` | legal_case ↔ consultation | M:N |
+---
 
-### ER Diagram (Simplified)
+## 👤 Employee Specialization
 
-```
-            ┌───────────────┐
-            │    Company    │
-            └───────┬───────┘
-                    │ owns
-            ┌───────▼───────┐
-            │  Shareholder  │
-            └───────────────┘
+The database uses an **ISA hierarchy** to represent specialized employee roles.
 
-  ┌──────────┐          ┌──────────┐
-  │Department├──has──────┤ Employee │
-  └──────────┘          └────┬─────┘
-                             │ ISA
-            ┌────────────────┼────────────────┐
-       ┌────▼───┐   ┌───────▼──────┐   ┌─────▼────┐
-       │Manager │   │  Engineer    │   │ Lawyer   │ ...
-       └────────┘   └──────────────┘   └──────────┘
-
-  ┌──────────────┐          ┌─────────┐
-  │Prod. Unit    ├─produces─┤ Product │
-  └──────────────┘          └────┬────┘
-                                 │
-              ┌──────────────────┼─────────────┐
-        ┌─────▼─────┐    ┌──────▼──────┐ ┌────▼────┐
-        │ Inventory  │    │ Order Lines │ │  Part   │
-        │ (in Shop)  │    │ (in Order)  │ └─────────┘
-        └────────────┘    └─────────────┘
-
-  ┌──────────┐        ┌─────────────┐
-  │ Vehicle  ├─maint──┤  Maint. Log │
-  └────┬─────┘        └─────────────┘
-       │ assigned
-  ┌────▼──────┐
-  │Truck Driver│
-  └───────────┘
-
-  ┌────────────┐       ┌─────────────────┐
-  │ Legal Case ├─with──┤ Customs Record  │
-  └─────┬──────┘       └─────────────────┘
-        │ handled by
-  ┌─────▼─────┐        ┌──────────────┐
-  │  Lawyer   ├─consult─┤ Consultation │
-  └───────────┘        └──────────────┘
+```text
+                     Employee
+                        │
+        ┌───────────────┼───────────────┐
+        │               │               │
+     Manager         Engineer         Lawyer
+        │
+   ┌────┼─────┬────────┬─────────┐
+   │    │     │        │         │
+ Labour Supervisor Accountant Truck Driver
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🔗 Relationship Tables
 
-### Prerequisites
+| Table                                 | Relationship                | Type |
+| ------------------------------------- | --------------------------- | ---- |
+| `owns`                                | Company ↔ Shareholder       | M:N  |
+| `produces_rel`                        | Production Unit ↔ Product   | M:N  |
+| `inventory`                           | Shop ↔ Product              | M:N  |
+| `order_line_items`                    | Order ↔ Product             | M:N  |
+| `performs_rel`                        | Employee ↔ Part             | M:N  |
+| `vehicle_assignment`                  | Vehicle ↔ Driver            | M:N  |
+| `maintenance_log`                     | Employee ↔ Vehicle          | M:N  |
+| `case_handling`                       | Legal Case ↔ Lawyer         | M:N  |
+| `department_has_employees`            | Department ↔ Employee       | M:N  |
+| `legal_case_associated_with_record`   | Legal Case ↔ Customs Record | M:N  |
+| `case_handling_involves_consultation` | Legal Case ↔ Consultation   | M:N  |
 
-| Requirement | Version |
-|-------------|---------|
-| **Node.js** | v18.0 or higher |
-| **MySQL** | 8.0 or higher |
-| **npm** | v9+ (bundled with Node.js) |
+---
 
-### 1. Clone & Install
+# 🧠 DBMS Concepts Demonstrated
+
+| Concept                   | Implementation                         |
+| ------------------------- | -------------------------------------- |
+| **Normalization**         | Structured relational tables           |
+| **Primary Keys**          | Unique entity identification           |
+| **Foreign Keys**          | Table relationships                    |
+| **Referential Integrity** | `CASCADE` / `SET NULL`                 |
+| **ISA Hierarchy**         | Employee specialization                |
+| **M:N Relationships**     | Bridge tables                          |
+| **Aggregate Functions**   | `SUM`, `COUNT`, `AVG`                  |
+| **Complex JOINs**         | Multi-table queries                    |
+| **Subqueries**            | Nested SQL queries                     |
+| **Constraints**           | `CHECK`, `UNIQUE`, FK constraints      |
+| **Transactions**          | Atomic database operations             |
+| **Indexing**              | Primary and unique indexes             |
+| **CRUD**                  | Create, Read, Update/Delete operations |
+
+---
+
+# 🚀 Getting Started
+
+## Prerequisites
+
+Install the following:
+
+* **Node.js 18+**
+* **npm 9+**
+* **MySQL 8.0+**
+
+---
+
+## 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/YOUR_USERNAME/pbcms.git
 cd pbcms
+```
+
+Replace `YOUR_USERNAME/pbcms` with your actual GitHub repository URL.
+
+---
+
+## 2. Install Dependencies
+
+```bash
 npm install
 ```
 
-### 2. Configure Database Credentials
+---
 
-Edit `config/db.js` and update the MySQL connection credentials:
+## 3. Configure MySQL
 
-```js
-// config/db.js
+Open:
+
+```text
+config/db.js
+```
+
+Update your MySQL credentials:
+
+```javascript
 const tmpConn = await mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'YOUR_MYSQL_PASSWORD',   // ← Update this
-  multipleStatements: true
+    host: 'localhost',
+    user: 'root',
+    password: 'YOUR_MYSQL_PASSWORD',
+    multipleStatements: true
 });
 ```
 
-> ⚠️ **Important:** Update the password in both the `createConnection` (line 10) and `createPool` (line 19) blocks.
+Configure the same credentials for the connection pool.
 
-### 3. Start the Server
+> ⚠️ **Never commit real passwords, API keys, or secrets to GitHub.**
+
+---
+
+## 4. Start the Application
 
 ```bash
 npm start
 ```
 
-This single command will:
-1. Connect to MySQL and create the `pbcompany` database (if it doesn't exist)
-2. Execute the full schema (`sql/schema.sql`) — 31 tables with FK constraints
-3. Seed demo data (`sql/seed.sql`) — company, employees, products, orders, etc.
-4. Hash all user passwords with bcrypt
-5. Start the Express server on **http://localhost:3000**
+The application initializes the database and starts the Express server.
 
+```text
+Database initialized with schema + seed data
+PBCMS running at http://localhost:3000
 ```
-✅ Database initialized with schema + seed data
-
-🚀 PBCMS running at http://localhost:3000
-
-📋 Login accounts (password: password123):
-   admin / hr_manager / prod_head / inv_manager
-   fin_head / legal_head / log_manager / buyer_user / share_user
-```
-
-### 4. Open in Browser
-
-Navigate to **http://localhost:3000** and log in with any demo account.
 
 ---
 
-## 🔑 Role-Based Portals
+## 5. Open the Application
 
-Each role sees a **customized dashboard, navigation sidebar, and feature set**:
+Visit:
 
-| Role | Username | Portal Access |
-|------|----------|--------------|
-| **Super Admin** | `admin` | Full access — all modules, all CRUD operations |
-| **HR Manager** | `hr_manager` | Employees, departments, salary analytics |
-| **Production Head** | `prod_head` | Products, production units, parts, production logs, work assignments |
-| **Inventory Manager** | `inv_manager` | Shops, stock levels, products, low-stock alerts |
-| **Finance Head** | `fin_head` | Orders, revenue analytics, customs duties, consultations |
-| **Legal Head** | `legal_head` | Legal cases, case handling, customs records |
-| **Logistics Manager** | `log_manager` | Vehicles, driver assignments, maintenance logs |
-| **B2B Buyer** | `buyer_user` | Browse products, orders, stock availability |
-| **Shareholder** | `share_user` | Company info, ownership distribution |
-
-> **Default password for all accounts:** `password123`
-
----
-
-## 📡 API Reference
-
-All endpoints return JSON. Base URL: `http://localhost:3000`
-
-### Authentication
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/auth/login` | Login with `{ username, password }` |
-| `POST` | `/api/auth/logout` | Destroy session |
-| `GET` | `/api/auth/me` | Get current authenticated user |
-
-### Dashboard (Analytics)
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/dashboard/admin` | Admin overview KPIs |
-| `GET` | `/api/dashboard/hr` | HR analytics (salary, roles) |
-| `GET` | `/api/dashboard/production` | Production stats |
-| `GET` | `/api/dashboard/inventory` | Stock & shop analytics |
-| `GET` | `/api/dashboard/finance` | Revenue, costs, order status |
-| `GET` | `/api/dashboard/legal` | Case statistics |
-| `GET` | `/api/dashboard/logistics` | Fleet analytics |
-| `GET` | `/api/dashboard/buyer` | Buyer order summary |
-| `GET` | `/api/dashboard/shareholder` | Company & ownership info |
-
-### CRUD Endpoints
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET / POST / DELETE` | `/api/company` | Company details & shareholders |
-| `GET / POST / DELETE` | `/api/departments` | Department management |
-| `GET / POST / DELETE` | `/api/employees` | Employee directory |
-| `GET / POST / DELETE` | `/api/products` | Product catalog, units, parts |
-| `GET / POST / DELETE` | `/api/inventory` | Stock levels & shops |
-| `GET / POST / DELETE` | `/api/orders` | Purchase orders & line items |
-| `GET / POST / DELETE` | `/api/buyers` | B2B buyer management |
-| `GET / POST / DELETE` | `/api/vehicles` | Fleet, assignments, maintenance |
-| `GET / POST / DELETE` | `/api/legal` | Cases, customs, consultations |
-
----
-
-## 📂 Project Structure
-
+```text
+http://localhost:3000
 ```
+
+Then log in using one of the demo accounts.
+
+---
+
+# 🔑 Role-Based Access
+
+| Role                  | Username      | Access                         |
+| --------------------- | ------------- | ------------------------------ |
+| **Super Admin**       | `admin`       | Complete system access         |
+| **HR Manager**        | `hr_manager`  | Employees and departments      |
+| **Production Head**   | `prod_head`   | Products and production        |
+| **Inventory Manager** | `inv_manager` | Inventory and shops            |
+| **Finance Head**      | `fin_head`    | Orders and financial analytics |
+| **Legal Head**        | `legal_head`  | Legal and customs              |
+| **Logistics Manager** | `log_manager` | Vehicles and maintenance       |
+| **B2B Buyer**         | `buyer_user`  | Products and orders            |
+| **Shareholder**       | `share_user`  | Company and ownership          |
+
+### Demo Password
+
+```text
+password123
+```
+
+> These credentials are provided for local/demo purposes.
+
+---
+
+# 📡 API Reference
+
+**Base URL**
+
+```text
+http://localhost:3000
+```
+
+## Authentication
+
+| Method | Endpoint           | Description       |
+| ------ | ------------------ | ----------------- |
+| `POST` | `/api/auth/login`  | Authenticate user |
+| `POST` | `/api/auth/logout` | Destroy session   |
+| `GET`  | `/api/auth/me`     | Get current user  |
+
+### Example Login Request
+
+```json
+{
+  "username": "admin",
+  "password": "password123"
+}
+```
+
+---
+
+## Dashboard APIs
+
+| Method | Endpoint                     |
+| ------ | ---------------------------- |
+| `GET`  | `/api/dashboard/admin`       |
+| `GET`  | `/api/dashboard/hr`          |
+| `GET`  | `/api/dashboard/production`  |
+| `GET`  | `/api/dashboard/inventory`   |
+| `GET`  | `/api/dashboard/finance`     |
+| `GET`  | `/api/dashboard/legal`       |
+| `GET`  | `/api/dashboard/logistics`   |
+| `GET`  | `/api/dashboard/buyer`       |
+| `GET`  | `/api/dashboard/shareholder` |
+
+---
+
+## CRUD APIs
+
+| Endpoint           | Operations          | Purpose                |
+| ------------------ | ------------------- | ---------------------- |
+| `/api/company`     | GET / POST / DELETE | Company & shareholders |
+| `/api/departments` | GET / POST / DELETE | Departments            |
+| `/api/employees`   | GET / POST / DELETE | Employees              |
+| `/api/products`    | GET / POST / DELETE | Products & production  |
+| `/api/inventory`   | GET / POST / DELETE | Inventory              |
+| `/api/orders`      | GET / POST / DELETE | Orders                 |
+| `/api/buyers`      | GET / POST / DELETE | B2B buyers             |
+| `/api/vehicles`    | GET / POST / DELETE | Fleet management       |
+| `/api/legal`       | GET / POST / DELETE | Legal & customs        |
+
+---
+
+# 📂 Project Structure
+
+```text
 pbcms/
+│
 ├── config/
-│   └── db.js                 # MySQL connection pool & database initialization
+│   └── db.js
+│
 ├── public/
 │   ├── css/
-│   │   └── style.css         # Full design system (glassmorphism, animations)
-│   ├── js/
-│   │   └── app.js            # SPA core — routing, rendering, CRUD, modals
-│   ├── login.html            # Authentication page with particle canvas
-│   └── dashboard.html        # SPA shell — sidebar, topbar, content area
+│   │   └── style.css
+│   │
+│   └── js/
+│       └── app.js
+│
+├── login.html
+├── dashboard.html
+│
 ├── routes/
-│   ├── auth.js               # Login / logout / session endpoints
-│   ├── dashboard.js          # Analytics queries for all 9 role dashboards
-│   ├── company.js            # Company & shareholder CRUD
-│   ├── departments.js        # Department CRUD
-│   ├── employees.js          # Employee CRUD with role joins
-│   ├── products.js           # Products, parts, units, production log CRUD
-│   ├── inventory.js          # Inventory & shop CRUD
-│   ├── orders.js             # Purchase orders & line items CRUD
-│   ├── buyers.js             # Buyer CRUD
-│   ├── vehicles.js           # Vehicle, assignment, maintenance CRUD
-│   └── legal.js              # Cases, customs, consultations, handling CRUD
+│   ├── auth.js
+│   ├── dashboard.js
+│   ├── company.js
+│   ├── departments.js
+│   ├── employees.js
+│   ├── products.js
+│   ├── inventory.js
+│   ├── orders.js
+│   ├── buyers.js
+│   ├── vehicles.js
+│   └── legal.js
+│
 ├── sql/
-│   ├── schema.sql            # Full database schema — 31 tables + users
-│   └── seed.sql              # Demo data — company, employees, orders, etc.
-├── server.js                 # Express app entry point & bootstrapper
-├── package.json              # Dependencies & scripts
-└── README.md                 # This file
+│   ├── schema.sql
+│   └── seed.sql
+│
+├── server.js
+├── package.json
+└── README.md
 ```
 
 ---
 
-## 🎨 UI Design
+# 🎨 UI & Design
 
-The interface uses a **dark-mode glassmorphism** design language:
+PBCMS features a modern **dark glassmorphism interface** designed for an enterprise dashboard experience.
 
-- **Color Palette:** Deep navy (`#0A1628`), gold accents (`#C9A84C`), and blue primary (`#185FA5`)
-- **Glassmorphism Cards:** Semi-transparent backgrounds with `backdrop-filter: blur(20px)`
-- **Particle Canvas:** Animated network graph on the login page
-- **Shimmer Animations:** Gold gradient text shimmer on the brand logo
-- **Animated Counters:** KPI values count up on dashboard load
-- **Status Badges:** Color-coded pills for order statuses, import/export types
-- **Toast Notifications:** Success/error/info feedback on CRUD operations
-- **Responsive Sidebar:** Section-grouped navigation with role badges
-- **Modal Forms:** Dynamic "Add New" modals for all entity types
+### Highlights
 
----
-
-## 🧠 DBMS Concepts Demonstrated
-
-| Concept | Implementation |
-|---------|---------------|
-| **Normalization (3NF)** | All tables normalized; no redundant data |
-| **Foreign Keys** | `ON DELETE CASCADE` / `SET NULL` across all relationships |
-| **ISA Hierarchy** | Employee specialization via `manager`, `engineer`, `lawyer`, etc. |
-| **M:N Relationships** | Bridge tables (`owns`, `performs_rel`, `inventory`, etc.) |
-| **Aggregate Queries** | `SUM`, `COUNT`, `AVG` for dashboard KPIs |
-| **Complex JOINs** | Multi-table joins for employee roles, order summaries |
-| **Subqueries** | Nested queries in dashboard analytics |
-| **Indexing** | Primary keys, unique constraints (`registration_no`, `gst_no`) |
-| **Constraints** | `CHECK` constraints (e.g., `import_export IN ('Import','Export')`) |
-| **Transactions** | Atomic seed data insertion with error handling |
+* 🌑 Dark-mode interface
+* ✨ Glassmorphism cards
+* 🎨 Modern color palette
+* 🌐 Animated particle background
+* 📈 Animated KPI counters
+* 🔔 Toast notifications
+* 🏷️ Status badges
+* 📱 Responsive sidebar
+* 📝 Dynamic forms
+* ⚡ SPA-style navigation
 
 ---
 
-## 🧪 Demo Accounts
+# 🔮 Future Improvements
 
-| Username | Role | Display Name |
-|----------|------|-------------|
-| `admin` | Super Admin | System Administrator |
-| `hr_manager` | HR | Meera Kapoor |
-| `prod_head` | Production | Rajesh Kumar |
-| `inv_manager` | Inventory | Sunil Mehta |
-| `fin_head` | Finance | Karan Johar |
-| `legal_head` | Legal | Priya Das |
-| `log_manager` | Logistics | Ramesh Yadav |
-| `buyer_user` | B2B Buyer | Vikram Singh |
-| `share_user` | Shareholder | Rahul Sharma |
+Possible future enhancements include:
 
-> **Password for all accounts:** `password123`
+* JWT authentication
+* Environment-based configuration
+* Password reset functionality
+* Advanced search and filtering
+* CSV/PDF report generation
+* Audit logging
+* Automated database backups
+* Docker deployment
+* Cloud database integration
+* Enhanced security controls
 
 ---
 
-## 📜 License
+# 📜 License
 
-This project was built as an academic project for the **Database Management Systems** course at **SRM Institute of Science and Technology**. It is intended for educational purposes.
+This project is intended for **educational purposes**.
 
 ---
 
 <div align="center">
-  <sub>Built with ❤️ for DBMS coursework — PBCMS v1.0</sub>
+
+## 🏭 PBCMS
+
+**Product-Based Company Management System**
+
+Built with ❤️ as a DBMS project
+
 </div>
-]]>
